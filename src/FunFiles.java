@@ -12,9 +12,10 @@ public class FunFiles {
     //constructor
     public FunFiles() {
         findFiles();
+        findTextFiles();
         createFile();
         //writeToFile();
-        readFile();
+       // readFile();
         namePerson();
         addOrOverwrite();
 
@@ -28,11 +29,21 @@ public class FunFiles {
     finds all files in a specified path
      */
     public void findFiles() {
-        File myPath = new File("C:\\Users\\gomezmorales.jan\\Documents");
+        File myPath = new File("C:\\Testet");
         String[] allFiles = myPath.list();
 
         //cycles through a list of files and folders to print them
         for (String fileNames : allFiles) {
+            System.out.println(fileNames);
+        }
+    }
+
+    public void findTextFiles() {
+        File myPath = new File("C:\\Testet");
+        String[] txtFiles = myPath.list();
+
+        //cycles through a list of files and folders to print them
+        for (String fileNames : txtFiles) {
             System.out.println(fileNames);
         }
     }
@@ -60,11 +71,11 @@ public class FunFiles {
      */
 
     public void addOrOverwrite(){
-        //frågar om man vill lägga till något till filen eller skriva över
+        //asks if you want to append or overwrite
         System.out.println("Do you want to add test to the file or overwrite it? (1: add, 2: overwrite)");
 
-        //Läser av svaret och avgör om den ska lägga till något eller skriva över
-        String ans = myScanner.next();
+        //reads your answer and decides if it's going to append or overwrite
+        String ans = myScanner.nextLine();
         if (ans.equals("1")){
             writeToFile(true);
         }
@@ -72,7 +83,7 @@ public class FunFiles {
             writeToFile(false);
 
         }
-        //om man inte svarat 1 eller 2 så skriver programet ut dethär:
+        //if you don't answer with 1 or 2 uit won't work
         else{
             System.out.println("You need to select add or overwrite");
             addOrOverwrite();
@@ -108,12 +119,14 @@ public class FunFiles {
                 System.out.println(data);
             }
 
-            myScan.close();
+
         } catch (FileNotFoundException e) {
             System.out.println("can not do this shit");
             e.printStackTrace();
         }
     }
+
+
 
     //saves person in list
     public void namePerson() {
