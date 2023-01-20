@@ -7,17 +7,17 @@ public class FunFiles {
 
     Scanner myScanner = new Scanner(System.in);
 
-    boolean addToFile = false;
-    boolean overwriteFile = false;
     //constructor
     public FunFiles() {
-        findFiles();
-        findTextFiles();
-        createFile();
+       // findFiles();
+        //findTextFiles();
+        //createFile();
         //writeToFile();
-       // readFile();
-        namePerson();
-        addOrOverwrite();
+        //readFile();
+        //namePerson();
+        findLongestWord();
+        //addOrOverwrite();
+
 
     }
 
@@ -40,11 +40,14 @@ public class FunFiles {
 
     public void findTextFiles() {
         File myPath = new File("C:\\Testet");
-        String[] txtFiles = myPath.list();
+        String[] allFiles = myPath.list();
 
         //cycles through a list of files and folders to print them
-        for (String fileNames : txtFiles) {
-            System.out.println(fileNames);
+        for (String fileName : allFiles) {
+
+            if(fileName.endsWith(".txt")){
+                System.out.println(fileName);
+            }
         }
     }
 
@@ -83,7 +86,7 @@ public class FunFiles {
             writeToFile(false);
 
         }
-        //if you don't answer with 1 or 2 uit won't work
+        //if you don't answer with 1 or 2 it won't work
         else{
             System.out.println("You need to select add or overwrite");
             addOrOverwrite();
@@ -140,30 +143,40 @@ public class FunFiles {
                 e.printStackTrace();
             }
         }
-        System.out.println("You wrote to the file:D.");
+       // System.out.println("You wrote to the file:D.");
     }
 
     //finds the longest world in the file
-   /* public String findLongest() {
+    public void findLongestWord()
+    {
+
+        File wordFiles = new File("C:\\Testet\\svenska-ord.txt");
+
         String longestWord = "";
         String current;
-        try {
-            Scanner sc = new Scanner("words.txt");
 
-            //while scaner still can, compare current with longest yet.
-            while (sc.hasNext()) {
-                current = sc.next();
+        try {
+
+            Scanner newScanner = new Scanner(wordFiles);
+
+            // It will compare the two words as long as it can
+
+            while (newScanner.hasNext()) {
+
+                current = newScanner.next();
+
                 if (current.length() > longestWord.length()) {
                     longestWord = current;
                 }
 
             }
-            System.out.println("\n"+longestWord+"\n");
+
+
+            System.out.println(longestWord);
+
         }
         catch (Exception e){
-            System.out.println("No");
+            System.out.println("Något gick fel");
         }
-        return longestWord;
     }
-*/
 }
